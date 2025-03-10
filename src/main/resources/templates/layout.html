@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+</head>
+<body>
+
+<header th:fragment="header">
+    <h1>Мой сайт </h1>
+    <nav>
+        <a href="/polls">Главная</a>
+
+        <div th:if="${session.userId == null}">
+            <a href="/login">Войти</a>
+            <a href="/register">Регистрация</a>
+        </div>
+
+        <!-- Для авторизованных -->
+        <div th:if="${session.userId != null}">
+            <a href="/poll/create">Создать опрос</a>
+            <a href="/user/profile">Профиль</a>
+            <form th:action="@{/logout}" method="post" class="link-style">
+                <button type="submit" class="logout-link">Выйти</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+
+<div class="content">
+    <div th:replace="${content}" class="content"></div>
+</div>
+
+
+<footer th:fragment="footer">
+    <p>&copy; 2024 Мой сайт</p>
+</footer>
+</body>
+</html>

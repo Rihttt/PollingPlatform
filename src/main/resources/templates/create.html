@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+      xmlns:layout="http://www.w3.org/1999/xhtml" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+</head>
+<body>
+<div th:replace="~{layout :: header}"></div>
+    <div layout:fragment="content">
+        <form th:action="@{/poll/create}" method="post">
+            <input type="text" name="title" placeholder="Название опроса" required>
+            <textarea name="description" placeholder="Описание"></textarea>
+
+            <div class="options">
+                <div class="option">
+                    <input type="text" name="options[]" placeholder="Вариант 1" required>
+                </div>
+                <div class="option">
+                    <input type="text" name="options[]" placeholder="Вариант 2" required>
+                </div>
+            </div>
+            <button type="button" onclick="addOption()">Добавить вариант</button>
+            <button type="submit">Создать опрос</button>
+        </form>
+    </div>
+</body>
+<script>
+    function addOption() {
+        const optionsDiv = document.querySelector('.options');
+        const newOption = document.createElement('div');
+        newOption.className = 'option';
+        newOption.innerHTML = '<input type="text" name="options[]" placeholder="Новый вариант" required>';
+        optionsDiv.appendChild(newOption);
+    }
+</script>

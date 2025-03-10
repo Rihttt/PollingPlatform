@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+</head>
+
+<body>
+<div th:replace="~{layout :: header}"></div>
+    <div layout:fragment="content">
+        <div class="user-info">
+            <h2 th:text="${user.username}"></h2>
+        </div>
+
+        <h3>Мои опросы</h3>
+        <div>
+            <div th:each="poll : ${user.polls}">
+                <h4 th:text="${poll.title}"></h4>
+                <p th:text="${poll.description}"></p>
+            </div>
+        </div>
+
+        <h3>Мои голоса</h3>
+        <div>
+            <div th:each="vote : ${user.votes}">
+                <p>
+                    Опрос: <span th:text="${vote.poll.title}"></span><br>
+                    Выбран: <span th:text="${vote.option.text}"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>

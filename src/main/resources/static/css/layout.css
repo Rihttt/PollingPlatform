@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 40px;
+}
+
+header h1 {
+    margin: 0;
+    color: #007bff;
+    font-size: 24px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: all 0.3s;
+}
+
+nav a:hover {
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+}
+
+/* Стили для кнопок */
+.inline-form button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    padding: 8px 12px;
+    transition: all 0.3s;
+}
+
+.inline-form button:hover {
+    background-color: #0056b3;
+    color: white;
+    border-radius: 4px;
+}
+
+/* Основной контент */
+.content {
+    align-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.link-style {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-link {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+}
+
+.logout-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+/* Футер */
+footer {
+    background: white;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 40px;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0;
+    color: #666;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header h1 {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru"
+      xmlns:layout="http://www.w3.org/1999/xhtml" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+</head>
+
+<body>
+<div th:replace="~{layout :: header}"></div>
+    <div layout:fragment = "content">
+        <div th:if="${hasVoted}" class="content">
+            <h2 th:text="${poll.title}"></h2>
+            <p th:text="${poll.description}"></p>
+            <h3>Результаты:</h3>
+            <div th:each="option : ${poll.options}">
+                <p th:text="${option.text + ' - ' + option.votes.size()}"></p>
+            </div>
+        </div>
+
+        <div th:unless="${hasVoted}" class="content">
+            <h2 th:text="${poll.title}"></h2>
+            <p th:text="${poll.description}"></p>
+            <form th:action="@{/poll/{id}/vote(id=${poll.poll_id})}" method="post">
+                <div th:each="option : ${poll.options}">
+                    <input type="radio" th:name="optionId"
+                           th:value="${option.option_id}"
+                           th:id="${'option-'+option.option_id}">
+                    <label th:for="${'option-'+option.option_id}"
+                           th:text="${option.text}"></label>
+                </div>
+                <button type="submit">Голосовать</button>
+            </form>
+        </div>
+    </div>
+
+</body>

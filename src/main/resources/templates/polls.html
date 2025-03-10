@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml" lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" th:href="@{/css/layout.css}"/>
+</head>
+
+<body>
+    <div th:replace="~{layout :: header}"></div>
+
+    <div layout:fragment = "content">
+        <div th:each="poll : ${polls.content}" class="content">
+            <h3 th:text="${poll.title}"></h3>
+            <p th:text="${poll.description}"></p>
+            <a th:href="@{/poll/{id}(id=${poll.poll_id})}">Подробнее</a>
+        </div>
+
+        <div class="content">
+            <span th:each="i : ${#numbers.sequence(0, polls.totalPages - 1)}"
+                  th:class="${i == polls.number} ? 'current' : ''">
+                <a th:href="@{/polls(page=${i}, size=5)}"
+                   th:text="${i + 1}"></a>
+            </span>
+        </div>
+    </div>
+
+
+</body>
